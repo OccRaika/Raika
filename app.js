@@ -38,4 +38,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+//Activando el servidor desde express
+app.listen(process.env.PORT || 3000, () => {
+  console.log("corriendo servidor en el puerto 3000");
+});
