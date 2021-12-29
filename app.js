@@ -10,7 +10,7 @@ var usersRouter = require('./src/routes/users');
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set("views", "./src/views")
 app.set('view engine', 'ejs');
 
 //Configuración de la carpeta pública "public"
