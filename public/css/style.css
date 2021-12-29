@@ -1,5 +1,163 @@
-h1 {
-  color:aqua;
-  size:22px;
 
-}
+
+.overlay { /* esta es la caja del pop-up*/
+      background-color: rgba(85,85,85,.4);
+      width: auto;
+      color: #fff;
+      text-align: left;
+      border-radius:5px;/* los bordes redondeados del pop-up*/
+      padding:2px 3px;
+      position:absolute;
+      z-index:1;
+      bottom:100%;
+      left:10%;
+      margin-left: -10px;	
+      margin-bottom: 10px;
+     }
+
+    
+.overlay.desactive { /* desaparecemos el pop-up*/
+      visibility:hidden;
+    }
+  
+
+.overlay #feature-additional-info::after{ /* hace que se vea el piquito del pop-up, en el punto donde se toca el mapa*/
+      content: '';
+      position: absolute;
+      top:100%;
+      left:10px;
+      margin-left: -10px;
+      border-width: 10px;
+      border-style: solid;
+      border-color: rgba(85,85,85,.7) transparent transparent transparent;
+    }
+
+
+.btn-cerrar-popup { /* tache del pop up*/
+      font-size: 16px;
+      line-height: 16px;
+      display: block;
+      text-align: right;
+      color:  #fff;
+       }
+
+
+.btn-cerrar-popup:hover { /* cuando pasas por encima del tache del pop up cambia de blanco a negrito*/ 
+      color: #000;
+      }
+
+
+#legende{ /*este afecta el logo del BONUM COMMUNE*/
+      position: absolute; z-index: 100000;	
+      bottom:0em;
+      right:.001%;
+
+    }
+
+
+#legende2{ /*este afecta el logo de RAIKA pero creo que no sirve porque img afecta los dos logos y lo neutraliza, ya no recuerdo*/
+      position: absolute; z-index: 100000;	
+      bottom:0em;
+      right:99px;
+      background-color:rgba(255, 255, 255, 0.3);
+  
+    }
+
+
+img { /*este afecta los dos logos, el del BONUM COMMUNE Y EL DE  RAIKA*/
+      background-color:rgba(241, 241, 241, 0.5);	
+      padding-bottom:0em;
+      padding-left: 0em;
+      padding-right: .1em;
+      width: 7em;
+      opacity: 1;	
+    } 
+
+
+p {  /*este <p> afecta los nombres de las parroquias del TopoJSON que contiene parroquias. colonias, estado etc 
+    esta mezclado con el Topo, para el pop-up se ve bien, pero para el nombre de la parroquia en el control de capas  
+    nos va a afectar	*/
+      border-radius:5px;
+      background:rgba(51,102,153,0.5);
+      margin-top: 0px;
+      margin-bottom: -15px;
+      padding:10px;
+      padding-bottom: 5px;
+    }
+
+  
+#refrescar{ /* el boton REINICIAR*/
+      opacity: 0.8;
+      position: absolute; z-index: 100000;	
+      top:.5em;
+      right:7em;
+      padding-top: 0em;
+    }
+
+
+#imprimir{ /* el boton IMPRIMIR*/
+      opacity: 0.8;
+      position: absolute; z-index: 100000;	
+      top:.5em;
+      right:13em;
+      padding-top: 0em;
+    }		
+
+
+#map { /* las medidas del mapa en la pantalla*/
+      width: 100%;
+      height: 100vh;
+    }
+
+
+.ol-attribution { /*este es el letrero de Open Street Map*/
+      opacity: .5;
+        text-align:center;
+        bottom:.5em;
+        margin-right: 12.7em;
+    }
+
+
+html, body {  /* mato todos los margenes y paddings del htm y el body*/
+         margin: 0; 
+         padding: 0; 
+    }
+
+
+.content{ /* el letrero de ponga el dispositivo horizontal hecho con jquery*/
+      opacity: 0.8;
+      position: absolute; z-index: 100000;	
+      top:9em;
+      border-radius:10px;
+      right:1em;
+      padding-top: 0em;
+      background-color:rgba(141, 241, 13, 0.3);
+      font-family:sans-serif;
+      color: blue;				
+    } 
+
+
+.content2{ /* el letrero de toque el cuadrito hecho con jquery*/
+      opacity: 0.8;
+      position: absolute; z-index: 100000;	
+      top:.6em;
+      border-radius:10px;
+      right:2.5em;
+      padding-top: 0em;
+      background-color:rgba(141, 241, 13, 0.3);
+      font-family:sans-serif;
+      color: blue;
+    }
+
+     
+.content3{ /* el letrero de toque raika hecho con jquery*/
+      opacity: 0.8;
+      position: absolute; z-index: 100000;	
+      bottom:3.7em;
+      border-radius:10px;
+      right:7.3em;
+      padding-top: 0em;
+      background-color:rgba(141, 241, 13, 0.3);
+      font-family:sans-serif;
+      color: blue;
+    }
