@@ -129,6 +129,35 @@ window.addEventListener('load',()=>{
 
 /* hasta aqui termino de asignar colores de poligonos, grosores, y colores de borde de todos los poligonos del TopoJSON de parroquias, colonias, estado y municipio  */
 
+/* <<<< 1 >>>>  aqui extraemos los datos geometricos del TopoJSON con ---ol.source.Vector--- de los PUNTOS ---blue--- que marcan las Iglesitas parroquias en sourcepunto */
+var sourcepunto = new ol.source.Vector({
+	features: (new ol.format.TopoJSON()).readFeatures(punto,{
+			   dataProjection: 'EPSG:4326',
+			   featureProjection: 'EPSG:3857'
+			   })
+});  /* termina la extraccion */
+
+/* <<<< 1 >>>> aqui extraemos los datos geometricos del TopoJSON con ---ol.source.Vector--- de los PUNTOS ---red--- que marcan las Iglesitas rectorias en sourcerectorias */	
+var sourcerectorias = new ol.source.Vector({
+	features: (new ol.format.TopoJSON()).readFeatures(rectorias,{
+			   dataProjection: 'EPSG:4326',
+			   featureProjection: 'EPSG:3857'
+			   })
+});/* termina la extraccion */
+
+
+/* <<<< 1 >>>>  aqui extraemos los datos geometricos del TopoJSON con ---ol.source.Vector--- de los PUNTOS ---green--- que marcan los puntos Religiosos en sourcePuntRel */	
+var sourcePuntRel = new ol.source.Vector({
+	features: (new ol.format.TopoJSON()).readFeatures(puntRel,{
+			   dataProjection: 'EPSG:4326',
+			   featureProjection: 'EPSG:3857'
+			   })
+});/* termina la extraccion */
+
+   /* esto que aparece:------>let id = geom.ol_uid-----
+	  en la -----function vectorStyleFunction(feature)---
+	  crea un ID en cada sub-objeto del TopoJSON  Ochenta parroquias comenzando en 4 y de dos en dos 6,8, 10 etc.  */
+
 
 /*>>>>32<<<<<*/	   function vectorStyleFunction(feature) {
 			            let geom = feature.getGeometry()
@@ -196,15 +225,87 @@ window.addEventListener('load',()=>{
 			visible: false,
 			
 		});
+/* <<<< 2 >>>>  de mi source del paso <<1>> (fuente) de datos extraidos hago un layer...una capa con todos los objetos del JSON que son puros puntos en este caso*/
+var Vectorpunto = new ol.layer.Vector({
+	source: sourcepunto, /*esta variable  viene del paso <<<1>>> de este JSON*/
+	visible: true,
+	title: 'Vectorpunto',
+	
+   
+	style: new ol.style.Style({
 
+
+		   image: new ol.style.Circle({
+				  radius: 3,
+				  fill: new ol.style.Fill({ /* es el relleno del punto  */
+				  color: 'rgba(12, 248, 244)'
+			   }),
+		   stroke: new ol.style.Stroke({ /* stroke es el color y el grosor de las lineas de borde de los puntos, el anillo exterior del punto*/
+				  color: 'blue', /* color de la  linea de borde*/
+				   width:1  /* ancho, grosor de linea*/
+			   }),
+	})
+})	 
+});
+
+
+/* <<<< 2 >>>>  de mi source del paso <<1>> (fuente) de datos extraidos hago un layer...una capa con todos los objetos del JSON que son puros puntos en este caso*/
+var Vectorrectorias = new ol.layer.Vector({
+	source: sourcerectorias,
+	visible: true,
+	title: 'Vectorrectorias',
+   
+	style: new ol.style.Style({
+
+		   image: new ol.style.Circle({
+				  radius: 2.7,
+				  fill: new ol.style.Fill({ /* es el relleno del punto  */
+				  color: 'red'
+			   }),
+	stroke: new ol.style.Stroke({ /* stroke es el color y el grosor de las lineas de borde de los puntos, el anillo exterior del punto*/
+				  color: 'blue',  /* color de la  linea de borde*/
+				   width:.7 /* ancho, grosor de linea*/
+			   }),
+	})
+})	 
+});
+
+
+
+/* <<<< 2 >>>>  de mi source del paso <<1>> (fuente) de datos extraidos hago un layer...una capa con todos los objetos del JSON que son puros puntos en este caso*/
+var VectorPuntRel = new ol.layer.Vector({
+	source: sourcePuntRel,
+	visible: true,
+	title: 'VectorPuntRel',
+   
+	style: new ol.style.Style({
+
+		   image: new ol.style.Circle({
+				  radius: 2.5,
+				  fill: new ol.style.Fill({
+				  color: 'rgba(231, 250, 5, 1)'
+			   }),
+		   stroke: new ol.style.Stroke({/* stroke es el color y el grosor de las lineas de borde de los puntos*/
+				  color: 'green', /* color de la  linea de borde*/
+				  width:1 /* ancho, grosor de linea*/
+			   }),
+	})
+})	 
+});
 
    /* <<<< 3 >>>>  aqui meto en la---var layers--- todas las capas de poligonos y puntos extraidos en los pasos 1 y 2 ya coloreados, con grosor de lineas...etc */             
   	const baseLayerGroup= new ol.layer.Group({
 		  layers:[
-			  osm, vectorLayerOchentaPARROQUIAS, layerprueba
+			osm, 
+			layerprueba,
+			vectorLayerOchentaPARROQUIAS, 					 
+			Vectorpunto,
+			Vectorrectorias,
+			VectorPuntRel
 	   ]
 	  })
 
+	
 
 	var Mivista = new ol.View({
 	center: ol.proj.fromLonLat([-98.204, 19.04]), zoom: 12
@@ -225,17 +326,35 @@ window.addEventListener('load',()=>{
 	
 
 		
-	var cargarMapa=document.querySelector('.cargarMapa')
+	var apagarMapa=document.querySelector('.apagarMapa')
+	var puntosAzules=document.querySelector('.puntosAzules')
 
-	cargarMapa.addEventListener('click', function(){
-		let elementChange="vectorLayerOchentaPARROQUIAS"
+
+	apagarMapa.addEventListener('click', function(){
+		let elementChange="vectorLayerOchentaPARROQUIAS";
+		let elementTrue="layerprueba"
 		baseLayerGroup.getLayers().forEach(function(element,i,a){
 			let baseLayerTitle=element.get('title');
-			element.setVisible(elementChange!==baseLayerTitle);
-			//console.log(elementChange!==baseLayerTitle)
+			if (baseLayerTitle=="vectorLayerOchentaPARROQUIAS"){
+			element.setVisible(elementChange!==baseLayerTitle);}
 		})
-		 
+		baseLayerGroup.getLayers().forEach(function(element,i,a){
+			let baseLayerTitle=element.get('title');
+			if (baseLayerTitle=="layerprueba"){
+			element.setVisible(elementTrue===baseLayerTitle);}
+		})
 	});
+
+	puntosAzules.addEventListener('click', function(){
+		let elementChange="Vectorpunto"
+		baseLayerGroup.getLayers().forEach(function(element,i,a){
+			let baseLayerTitle=element.get('title');
+			if (baseLayerTitle=="Vectorpunto"){
+			element.setVisible(elementChange!==baseLayerTitle);}
+			//console.log(elementChange!==baseLayerTitle)
+		})	 
+	});
+
 
 
 });
