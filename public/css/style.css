@@ -1,4 +1,9 @@
+*{
+      margin:0;
+      padding :0;
+      box-sizing: border-box;
 
+}
 
 .overlay { /* esta es la caja del pop-up*/
       background-color: rgba(85,85,85,.4);
@@ -161,3 +166,135 @@ html, body {  /* mato todos los margenes y paddings del htm y el body*/
       font-family:sans-serif;
       color: blue;
     }
+
+
+    /* Barra lateral */
+    .barraLateral{
+          position: fixed;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 200px;
+          background: #11101d;
+      }
+
+    .barraLateral .logoDetalles{
+      height: 60px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      }
+
+    .barraLateral .logoDetalles img{
+      width:40px;
+      height:40px;
+      border-radius:150px;
+      text-align: center;
+      line-height: 50px;
+      }
+
+    .barraLateral .logoDetalles .nombreLogo{
+          position: relative;
+          font-size: 22px;
+          color: #fff;
+          font-weight: 600;
+          left: -40px;
+      }
+
+    .barraLateral .enlaces{
+
+          height: 100%;
+          padding-top: 30px;
+      }
+
+    .barraLateral .enlaces li{
+          position:relative;
+          list-style: none;
+          transition: all 0.4s ease;
+      }
+
+.barraLateral .enlaces li:hover{
+      background: #1d1b31;
+}
+
+    .barraLateral .enlaces li .iconoEnlace{
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          font-size: 18px;
+
+      }
+
+    .barraLateral .enlaces li i{
+          height: 50px;
+          min-width: 50px;
+          text-align: center;
+          line-height: 50px;
+          color: #fff;
+          font-size: 18px;
+    }
+
+    .barraLateral .enlaces li a{
+          display: flex;
+          align-items: center;
+          text-decoration: none;
+          color: #fff;
+    }
+
+    .barraLateral .enlaces li a .enlace{
+      font-size: 18px;
+      font-weight: 400;
+      color: #fff;
+      }
+
+.barraLateral .enlaces li .subMenu{
+      padding: 6px 6px 14px 80px;
+      margin-top: -10px;
+      background: #1d1b31;
+      /* display: none; */
+}
+
+.barraLateral .enlaces li .subMenu a{
+      color: #fff;
+      font-size: 15px;
+      padding: 5px 0;
+      white-space: nowrap;
+      opacity: 0.6;
+      transition: all 0.3 ease;
+}
+
+.barraLateral .enlaces li .subMenu a:hover{
+      opacity: 1;
+}
+
+.barraLateral.close .enlaces li .subMenu{
+      position: absolute;
+      overflow: scroll;
+      height: 200px;
+      left:100%;
+      top: -10px;
+      margin-top: 0;
+      padding: 10px 20px;
+      border-radius: 0 6px 6px 0;
+      transition: all 0.4s ease;
+      opacity: 0;
+      pointer-events: none;
+
+}
+.barraLateral.close .enlaces li:hover .subMenu{
+      top: 0;
+      opacity: 1;
+      pointer-events: auto;      
+}
+
+.barraLateral.close .enlaces li .subMenu .enlaceNombre{
+      display: none;
+}
+
+.barraLateral.close .enlaces li .subMenu .enlaceNombre{
+      font-size: 18px;
+      opacity: 1;
+      display: block;
+
+}
