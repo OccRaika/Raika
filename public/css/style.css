@@ -169,92 +169,146 @@ html, body {  /* mato todos los margenes y paddings del htm y el body*/
 
 
     /* Barra lateral */
-    .barraLateral{
-          position: fixed;
-          top: 0;
-          left: 0;
-          height: 100%;
-          width: 200px;
-          background: #11101d;
-      }
+.barraLateral{
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 200px;
+      background: #11101d;
+      z-index: 100;
+      transition: all 0.5s ease;
+}
 
-    .barraLateral .logoDetalles{
+.barraLateral.close{
+      width: 50px;
+
+}
+
+.barraLateral .logoDetalles{
       height: 60px;
       width: 100%;
       display: flex;
       align-items: center;
-      justify-content: space-around;
-      }
+      margin-left: 10px;
+}
 
-    .barraLateral .logoDetalles img{
-      width:40px;
-      height:40px;
+.barraLateral .logoDetalles img{
+      width:30px;
+      height:30px;
       border-radius:150px;
       text-align: center;
       line-height: 50px;
-      }
+}
 
-    .barraLateral .logoDetalles .nombreLogo{
-          position: relative;
-          font-size: 22px;
-          color: #fff;
-          font-weight: 600;
-          left: -40px;
-      }
+.barraLateral .logoDetalles i{
+      font-size: 30px;
+      color: #fff;
+      height: 50px;
+      min-width: 50px;
+      text-align: center;
+      line-height: 50px;
+}
 
-    .barraLateral .enlaces{
+.barraLateral .logoDetalles .nombreLogo{
+      position: relative;
+      font-size: 22px;
+      color: #fff;
+      font-weight: 600;
+      left: 10px;
+      transition: 0.3s ease;
+      transition-delay: 0.1s;
+}
 
-          height: 100%;
-          padding-top: 30px;
-      }
+.barraLateral.close .logoDetalles .nombreLogo{
+      transition-delay: 0s;
+      opacity: 0;
+      pointer-events: none;
+}
 
-    .barraLateral .enlaces li{
-          position:relative;
-          list-style: none;
-          transition: all 0.4s ease;
-      }
+.barraLateral .enlaces{
+      height: 100%;
+      padding: 30px 0 150px 0;
+      overflow: auto;
+}
+
+.barraLateral.close .enlaces{
+      overflow: visible;
+}
+
+.barraLateral .enlaces::-webkit-scrollbar{
+      display: none;
+}
+
+.barraLateral .enlaces li{
+      position:relative;
+      list-style: none;
+      transition: all 0.4s ease;
+}
 
 .barraLateral .enlaces li:hover{
       background: #1d1b31;
 }
 
-    .barraLateral .enlaces li .iconoEnlace{
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          font-size: 18px;
+.barraLateral .enlaces li .iconoEnlace{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+       font-size: 18px;
 
-      }
+}
 
-    .barraLateral .enlaces li i{
-          height: 50px;
-          min-width: 50px;
-          text-align: center;
-          line-height: 50px;
-          color: #fff;
-          font-size: 18px;
-    }
+.barraLateral.close .enlaces li .iconoEnlace{
+      display:block;
+}
 
-    .barraLateral .enlaces li a{
-          display: flex;
-          align-items: center;
-          text-decoration: none;
-          color: #fff;
-    }
+.barraLateral .enlaces li i{
+      height: 50px;
+      min-width: 50px;
+      text-align: center;
+      line-height: 50px;
+      color: #fff;
+      font-size: 18px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+}
 
-    .barraLateral .enlaces li a .enlace{
+.barraLateral .enlaces li.mostrarMenu i.flecha{
+      transform: rotate(-180deg);
+}  
+
+.barraLateral.close .enlaces i.flecha{
+      display:none;
+
+}
+
+.barraLateral .enlaces li a{
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: #fff;
+}
+
+.barraLateral .enlaces li a .enlaceNombre{
       font-size: 18px;
       font-weight: 400;
       color: #fff;
-      }
-
-.barraLateral .enlaces li .subMenu{
-      padding: 6px 6px 14px 80px;
-      margin-top: -10px;
-      background: #1d1b31;
-      /* display: none; */
 }
 
+.barraLateral.close .enlaces li a .enlaceNombre{
+      opacity: 0;
+      pointer-events: none;
+}
+
+.barraLateral .enlaces li .subMenu{
+      padding: 6px 6px 14px 50px;
+      margin-top: -10px;
+      background: #1d1b31;
+      display: none; 
+}
+.barraLateral .enlaces li.mostrarMenu .subMenu{
+      display: block;
+}
 .barraLateral .enlaces li .subMenu a{
       color: #fff;
       font-size: 15px;
@@ -270,31 +324,83 @@ html, body {  /* mato todos los margenes y paddings del htm y el body*/
 
 .barraLateral.close .enlaces li .subMenu{
       position: absolute;
-      overflow: scroll;
-      height: 200px;
-      left:100%;
+      /* overflow: scroll;
+      height: 200px; */
+      left: 100%;
       top: -10px;
       margin-top: 0;
       padding: 10px 20px;
       border-radius: 0 6px 6px 0;
-      transition: all 0.4s ease;
       opacity: 0;
+      display: block;
       pointer-events: none;
+      transition: 0s;
 
 }
 .barraLateral.close .enlaces li:hover .subMenu{
       top: 0;
       opacity: 1;
-      pointer-events: auto;      
+      pointer-events: auto; 
+      transition: all 0.4s ease;     
 }
 
-.barraLateral.close .enlaces li .subMenu .enlaceNombre{
+.barraLateral .enlaces li .subMenu .enlaceNombre{
       display: none;
 }
+
 
 .barraLateral.close .enlaces li .subMenu .enlaceNombre{
       font-size: 18px;
       opacity: 1;
       display: block;
-
 }
+
+.barraLateral .enlaces li .subMenu.blank {
+      opacity: 0;
+      pointer-events: auto;
+      padding:3px 20px 6px 16px;
+      opacity: 0;
+      pointer-events: none;
+      
+}
+
+.barraLateral .enlaces li:hover .subMenu.blank{
+      top: 50%;
+      transform: translateY(-50%);
+}
+
+.seccionHogar{
+      position: relative;
+      background: #E4E9F7;
+      height: 100vh;
+      left: 200px;
+      width: calc(100% - 200px);
+      transition: all 0.5s ease;
+}
+
+.barraLateral.close ~ .seccionHogar{
+      left:50px;
+      width: calc(100% - 50px);
+}
+
+.seccionHogar .contenidoHogar{
+      height: 60px;
+      display: flex;
+      align-items: center;
+      
+} 
+
+.seccionHogar .contenidoHogar .fa-bars,
+.seccionHogar .contenidoHogar .texto{
+      color:#11101d;
+      font-size: 35px;
+}
+
+.seccionHogar .contenidoHogar .fa-bars{
+      margin: 0 15px;
+}
+
+.seccionHogar .contenidoHogar .texto{
+      font-size: 26px;
+      font-weight: 600;
+} 

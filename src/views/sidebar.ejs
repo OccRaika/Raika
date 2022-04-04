@@ -9,22 +9,31 @@
 
 </head>
   <body>
-    <div class="barraLateral close">
+    <div class="barraLateral">
       <div class="logoDetalles">
           <img src="\img\pp.jpg" alt="logo raika">
           <span class="nombreLogo">Raika</span>     
       </div>  
       <ul class="enlaces">
         <li>
+          <a href="#">
+            <i class="fa-solid fa-table-cells-large"></i>
+            <span class="enlaceNombre">Tablero</span>
+          </a>
+          <ul class="subMenu blank">
+            <li><a class= "enlaceNombre"href="#">Tablero</a></li>
+          </ul>
+        </li>
+        <li>
           <div class="iconoEnlace">
             <a href="#">
               <i class="fa-solid fa-cross"></i> 
-              <span class="enlaceNombre">Zona 1</span>
+              <span class="enlaceNombre" >Zona1</span>
             </a>
-            <i class="fa-solid fa-angle-down"></i>
+            <i class="fa-solid fa-angle-down flecha"></i>
           </div>
           <div>
-            <ul class="subMenu close">
+            <ul class="subMenu">
               <li><a class= "enlaceNombre"href="#">Zona 1</a></li>
               <li><a href="#">Polígono1</a></li>
               <li><a href="#">Polígono2</a></li>
@@ -42,12 +51,12 @@
           <div class="iconoEnlace">
             <a href="#">
               <i class="fa-solid fa-church"></i> 
-              <span class="enlaceNombre">Zona 2</span>
+              <span class="enlaceNombre">Zona2</span>
             </a>
-            <i class="fa-solid fa-angle-down"></i>
+            <i class="fa-solid fa-angle-down flecha"></i>
           </div>
           <div>
-            <ul class="subMenu close">
+            <ul class="subMenu">
               <li><a class= "enlaceNombre"href="#">Zona 2</a></li>
               <li><a href="#">PolígonoA</a></li>
               <li><a href="#">PolígonoB</a></li>
@@ -60,7 +69,43 @@
             </ul>
           </div>
         </li> 
+        <li>
+          <a href="#">
+            <i class="fa-solid fa-hands-praying"></i>
+            <span class="enlaceNombre">Conócenos</span>
+          </a>
+          <ul class="subMenu blank">
+            <li><a class= "enlaceNombre"href="#">Conócenos</a></li>
+          </ul>
+        </li>
       </ul>    
     </div>
+
+    <section class="seccionHogar">
+      <div class="contenidoHogar">
+        <i class="fa-solid fa-bars"></i>
+        <span class="texto">Caida Barra Lateral</span>
+      </div>
+    </section>
+
+    <script>
+      let flecha = document.querySelectorAll(".flecha")
+      
+      for (var i = 0; i < flecha.length; i++) {
+        flecha[i].addEventListener("click", (e)=>{
+          let flechaPadre = e.target.parentElement.parentElement;
+          flechaPadre.classList.toggle("mostrarMenu")
+        });
+        
+      }
+
+      let barraLateral= document.querySelector(".barraLateral");
+      let barraLateralBtn= document.querySelector(".fa-bars");
+      console.log(barraLateral)
+      barraLateralBtn.addEventListener("click", ()=>{
+        barraLateral.classList.toggle("close");
+      });
+    </script>
+
   </body>
 </html>

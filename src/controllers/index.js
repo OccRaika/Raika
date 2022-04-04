@@ -3,7 +3,7 @@ const controller={
         res.render('raikaH');
     },
     'sidebar': (req, res, next)=>{
-        res.render('index');
+        res.render('sidebar');
     }
 };//fin del controlador
 
